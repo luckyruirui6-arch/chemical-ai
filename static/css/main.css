@@ -16,6 +16,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    padding: 20px;
 }
 
 .login-container {
@@ -111,6 +112,8 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .header-left h1 {
@@ -122,6 +125,7 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .btn-small {
@@ -256,6 +260,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     line-height: 1.6;
+    word-break: break-word;
 }
 
 .message-content p {
@@ -313,4 +318,90 @@ body {
     margin-top: 10px;
     font-size: 12px;
     color: #27ae60;
+}
+
+/* ========== 手机适配 (屏幕宽度 < 768px) ========== */
+@media (max-width: 768px) {
+    /* 登录页卡片占满宽度 */
+    .login-container {
+        padding: 10px;
+    }
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    /* 主页面：侧边栏移到顶部，聊天区全宽 */
+    .main-content {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px;
+    }
+    .chat-area {
+        width: 100%;
+    }
+
+    /* 消息气泡占满屏幕更舒服 */
+    .message {
+        max-width: 95%;
+    }
+    .message-avatar {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        margin: 0 8px;
+    }
+    .message-content {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    /* 输入区域 */
+    .chat-input-area {
+        padding: 12px;
+        gap: 8px;
+    }
+    .chat-input-area textarea {
+        padding: 10px 12px;
+        font-size: 16px; /* 防止 iOS 自动缩放 */
+    }
+    .btn-send {
+        padding: 0 20px;
+        font-size: 14px;
+    }
+
+    /* 头部换行 */
+    .header {
+        padding: 12px 16px;
+    }
+    .header-left h1 {
+        font-size: 18px;
+    }
+    .btn-small {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* 侧边栏内部 */
+    .upload-area {
+        padding: 15px;
+    }
+    .doc-list li {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    /* 管理员表格 – 横向滚动 */
+    .users-table, .codes-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .users-table th, .users-table td,
+    .codes-table th, .codes-table td {
+        padding: 8px 12px;
+    }
 }
