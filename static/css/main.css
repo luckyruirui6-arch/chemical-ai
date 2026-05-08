@@ -22,7 +22,7 @@ body {
 .login-container {
     width: 100%;
     max-width: 420px;
-    padding: 20px;
+    margin: 0 auto;
 }
 
 .login-box {
@@ -98,7 +98,7 @@ body {
     font-size: 14px;
 }
 
-/* 主页面样式 */
+/* 主页面布局 */
 .container {
     display: flex;
     flex-direction: column;
@@ -141,6 +141,7 @@ body {
     background: #e0e0e0;
 }
 
+/* 主要内容 (侧边栏+聊天区) */
 .main-content {
     flex: 1;
     display: flex;
@@ -320,10 +321,11 @@ body {
     color: #27ae60;
 }
 
-/* ========== 手机适配 (屏幕宽度 < 768px) ========== */
+/* ========== 🔥 手机端适配 (宽度 ≤ 768px) ========== */
 @media (max-width: 768px) {
-    /* 登录页卡片占满宽度 */
+    /* 登录页卡片占满 */
     .login-container {
+        max-width: 100%;
         padding: 10px;
     }
     .login-box {
@@ -344,7 +346,7 @@ body {
         width: 100%;
     }
 
-    /* 消息气泡占满屏幕更舒服 */
+    /* 消息气泡占满宽度 */
     .message {
         max-width: 95%;
     }
@@ -359,21 +361,21 @@ body {
         font-size: 14px;
     }
 
-    /* 输入区域 */
+    /* 输入区域放大，方便手指触摸 */
     .chat-input-area {
         padding: 12px;
         gap: 8px;
     }
     .chat-input-area textarea {
-        padding: 10px 12px;
+        padding: 12px 14px;
         font-size: 16px; /* 防止 iOS 自动缩放 */
     }
     .btn-send {
         padding: 0 20px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
-    /* 头部换行 */
+    /* 头部紧凑 */
     .header {
         padding: 12px 16px;
     }
@@ -381,8 +383,8 @@ body {
         font-size: 18px;
     }
     .btn-small {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 8px 12px;
+        font-size: 13px;
     }
 
     /* 侧边栏内部 */
@@ -390,18 +392,30 @@ body {
         padding: 15px;
     }
     .doc-list li {
-        padding: 6px 10px;
-        font-size: 12px;
+        padding: 10px 12px;
+        font-size: 14px;
     }
 
-    /* 管理员表格 – 横向滚动 */
-    .users-table, .codes-table {
+    /* ✅ 管理员表格 – 允许横向滚动（重要！） */
+    .users-table,
+    .codes-table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
     }
     .users-table th, .users-table td,
     .codes-table th, .codes-table td {
-        padding: 8px 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    /* 其他小细节 */
+    .sidebar-section h3 {
+        font-size: 16px;
+    }
+    .btn-upload {
+        padding: 10px 20px;
+        font-size: 15px;
     }
 }
