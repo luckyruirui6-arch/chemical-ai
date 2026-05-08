@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化工AI专业版 - 智能助手</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <h1>🧪 化工AI专业版</h1>
+            </div>
+            <div class="header-right">
+                <span id="userInfo">加载中...</span>
+                <button id="adminCodesBtn" class="btn-small" style="display:none;">🔑 激活码</button>
+                <button id="adminUsersBtn" class="btn-small" style="display:none;">👥 用户管理</button>
+                <button id="logoutBtn" class="btn-small">退出</button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3>📚 知识库管理</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <p>拖拽文件到此处或</p>
+                        <input type="file" id="fileInput" style="display: none;">
+                        <button id="uploadBtn" class="btn-upload">选择文件</button>
+                    </div>
+                    <div id="uploadStatus"></div>
+                </div>
+                <div class="sidebar-section">
+                    <h3>📋 已加载文档</h3>
+                    <ul id="docList" class="doc-list">
+                        <li>聚合工艺操作规程.md</li>
+                        <li>化工安全作业规范.md</li>
+                        <li>设备故障排查手册.md</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chat-area">
+                <div id="chatMessages" class="chat-messages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>您好！我是化工AI专业版智能助手。我可以帮您：</p>
+                            <ul>
+                                <li>解答聚合工艺相关技术问题</li>
+                                <li>查询化工安全作业规范</li>
+                                <li>分析设备故障原因及解决方案</li>
+                                <li>上传您的专业文档进行智能问答</li>
+                            </ul>
+                            <p>请问有什么可以帮助您的？</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <textarea id="questionInput" placeholder="请输入您的问题..." rows="3"></textarea>
+                    <button id="sendBtn" class="btn-send">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

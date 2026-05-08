@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化工AI专业版 - 注册</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <style>
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .password-requirement {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        .code-info {
+            font-size: 12px;
+            color: #27ae60;
+            margin-top: 5px;
+        }
+        .price-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>🧪 化工AI专业版</h1>
+                <p>注册新账号 <span class="price-badge">¥99 永久</span></p>
+            </div>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" id="username" placeholder="请输入用户名（3-20个字符）" required>
+                </div>
+                <div class="form-group">
+                    <label>邮箱（可选）</label>
+                    <input type="email" id="email" placeholder="请输入邮箱">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" id="password" placeholder="请输入密码（至少6位）" required>
+                    <div class="password-requirement">密码长度至少6位</div>
+                </div>
+                <div class="form-group">
+                    <label>确认密码</label>
+                    <input type="password" id="confirmPassword" placeholder="请再次输入密码" required>
+                </div>
+                <div class="form-group">
+                    <label>激活码</label>
+                    <input type="text" id="inviteCode" placeholder="请输入激活码（格式：XXXX-XXXX-XXXX-XXXX）" required>
+                    <div class="code-info">💡 需要激活码才能注册，请联系管理员购买（99元/永久）</div>
+                </div>
+                <button type="submit" class="login-btn">注 册</button>
+            </form>
+            <div id="registerMessage" class="login-message"></div>
+            <div class="login-link">
+                已有账号？<a href="/login">立即登录</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const inviteCode = document.getElementById('inviteCode').value.trim();
+            const messageEl = document.getElementById('registerMessage');
+            
+            // 验证用户名
+            if (username.length < 3 || username.length > 20) {
+                messageEl.textContent = '用户名长度应为3-20个字符';
+                messageEl.style.color = '#e74c3c';
+                return;
+            }
+            
+            // 验证密码长度
+            if (password.length < 6) {
+                messageEl.textContent = '密码长度至少6位';
+                messageEl.style.color = '#e74c3c';
+                return;
+            }
+            
+            // 验证密码一致性
+            if (password !== confirmPassword) {
+                messageEl.textContent = '两次输入的密码不一致';
+                messageEl.style.color = '#e74c3c';
+                return;
+            }
+            
+            // 验证激活码格式
+            if (!inviteCode) {
+                messageEl.textContent = '请填写激活码';
+                messageEl.style.color = '#e74c3c';
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password, invite_code: inviteCode })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    messageEl.textContent = '注册成功！3秒后跳转到登录页面...';
+                    messageEl.style.color = '#27ae60';
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 3000);
+                } else {
+                    messageEl.textContent = data.message;
+                    messageEl.style.color = '#e74c3c';
+                }
+            } catch (error) {
+                messageEl.textContent = '注册失败，请重试';
+                messageEl.style.color = '#e74c3c';
+            }
+        });
+    </script>
+</body>
+</html>
